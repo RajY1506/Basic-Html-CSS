@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .task input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <div id="tasks">
+            <!-- Tasks will be dynamically added here -->
+        </div>
+        <div>
+            <input type="text" id="taskInput" placeholder="Enter your task...">
+            <button onclick="addTask()">Add</button>
+        </div>
+    </div>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById("taskInput");
+            var taskText = taskInput.value;
+            taskInput.value = "";
+
+            var tasksDiv = document.getElementById("tasks");
+
+            var taskDiv = document.createElement("div");
+            taskDiv.className = "task";
+
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            var taskTextDiv = document.createElement("div");
+            taskTextDiv.textContent = taskText;
+
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function () {
+                tasksDiv.removeChild(taskDiv);
+            };
+
+            taskDiv.appendChild(checkbox);
+            taskDiv.appendChild(taskTextDiv);
+            taskDiv.appendChild(deleteButton);
+
+            tasksDiv.appendChild(taskDiv);
+        }
+    </script>
+</body>
+
+</html>
